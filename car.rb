@@ -2,9 +2,7 @@
 
 module ArrayPack
 	def arrayPack(deletenumber,*array)
-
-
-
+    #処理記述
     return *array
   end
 end
@@ -18,26 +16,27 @@ class Car
   end
   def AddCar(carName,price)
     if @@ElementCount===5
-      
-
-
-
+      DeleteCar(0)
+     #配列に要素追加
+      @@ElementCount=@@ElementCount+1
     else
-
-
-
+     #配列に要素追加
+      @@ElementCount=@@ElementCount+1
     end
   end
   def DeleteCar(arrayNumber)
     if(arrayNumber<@@ElementCount)
-
-
-
+    @CarName[arrayNumber]=""
+    @Price[arrayNumber]=''
+     #モジュールを呼ぶ
+    @@ElementCount=@@ElementCount-1
   else
   end
   end
   def ShowCar()
-
+    @@ElementCount.times do |i|
+    print(i, " CarName:",@CarName[i]," Price:",@Price[i],"\n" )
+    end
   end
 end
 
