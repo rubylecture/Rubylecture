@@ -2,7 +2,12 @@
 
 module ArrayPack
 	def arrayPack(deletenumber,*array)
-    #処理記述
+	#配列を詰める回数
+    num=4-deletenumber
+	num.times do |i|
+	            #配列を前に詰める
+				array[i+deletenumber]=array[i+1+deletenumber]
+    end
     return *array
   end
 end
@@ -11,24 +16,36 @@ class Car
   include ArrayPack
   @@ElementCount=0
   def initialize()
+    #配列初期化
     @CarName=Array.new(5)
     @Price=Array.new(5)
   end
   def AddCar(carName,price)
+    #配列がいっぱいだった場合
     if @@ElementCount===5
+      #先頭配列を消去
       DeleteCar(0)
-     #配列に要素追加
+      #配列に要素を追加
+      @CarName[@@ElementCount]=carName
+      @Price[@@ElementCount]=price
+      #要素数を1足す
       @@ElementCount=@@ElementCount+1
     else
-     #配列に要素追加
+      @CarName[@@ElementCount]=carName
+      @Price[@@ElementCount]=price
       @@ElementCount=@@ElementCount+1
     end
   end
   def DeleteCar(arrayNumber)
+  	#入力した番号が存在する場合
     if(arrayNumber<@@ElementCount)
+    #消去
     @CarName[arrayNumber]=""
     @Price[arrayNumber]=''
-     #モジュールを呼ぶ
+    #モジュールを呼ぶ
+    *@CarName=arrayPack(arrayNumber,*@CarName)
+    *@Price=arrayPack(arrayNumber,*@Price)
+    #配列の要素数を1減らす
     @@ElementCount=@@ElementCount-1
   else
   end
@@ -39,6 +56,7 @@ class Car
     end
   end
 end
+
 
 car=Car.new()
 flag=true
